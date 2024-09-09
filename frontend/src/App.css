@@ -1,0 +1,22 @@
+/* App.css */
+
+body {
+    background-color: #333; /* Set the background color */
+    color: #f1c40f; /* Set the font color */
+  }
+  
+  .App {
+    min-height: 100vh; /* Ensure the App component covers the full viewport height */
+    color: inherit; /* Inherit the text color from the body */
+  }
+
+  .card-body {
+    padding: 10px;
+  }
+  
+  .card-title {
+    font-size: 1.1rem;
+    color: #f1c40f;
+    text-align: center;
+  }
+  

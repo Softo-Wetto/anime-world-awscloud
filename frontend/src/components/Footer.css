@@ -1,0 +1,39 @@
+.footer {
+  background-color: #1f182a; /* Dark background color */
+  color: #f1c40f; /* Theme color for text */
+}
+
+.footer h4 {
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.footer a {
+  color: #f1c40f;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  color: #fff;
+}
+
+.footer .social-icons a {
+  margin-right: 15px;
+  transition: color 0.3s ease;
+}
+
+.footer .social-icons a:hover {
+  color: #f1c40f;
+}
+
+.footer-bottom {
+  border-top: 1px solid #444;
+  padding-top: 15px;
+  margin-top: 20px;
+  color: #ced4da; /* Slightly lighter text for better readability */
+}
+
+.footer-bottom p {
+  margin: 0;
+}
+

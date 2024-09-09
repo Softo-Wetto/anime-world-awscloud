@@ -1,0 +1,42 @@
+/* Airing, Upcoming, Popular, Favourite Pages.css */
+
+.anime-list-page {
+  max-width: 1200px; /* Consistent width with the homepage */
+  margin: 0 auto;
+  padding: 30px 20px; /* Padding similar to the homepage */
+  background-color: #333; /* Light gray background consistent with the homepage */
+  color: #333; /* Main theme color */
+  font-family: 'Roboto', sans-serif; /* Consistent font */
+}
+
+.anime-list-page h2 {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+  color: #f1c40f; /* Theme color for headings */
+  border-bottom: 2px solid #f1c40f; /* Consistent border style with the homepage */
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.anime-list-page p {
+  text-align: center;
+  color: #f1c40f; 
+}
+
+.anime-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Center the anime cards */
+  margin: 0 -15px;
+}
+
+@media (max-width: 768px) {
+  .anime-list-page {
+    padding: 20px 10px;
+  }
+
+  .anime-list-page h2 {
+    font-size: 20px;
+  }
+}

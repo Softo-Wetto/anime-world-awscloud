@@ -1,0 +1,62 @@
+/* Favorite Characters Page Styles */
+.favorite-characters-page {
+    padding: 20px;
+    background-color: #333;
+    color: #fff;
+    max-width: 1200px;
+    margin: 30px auto;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  }
+  
+  .favorite-characters-page h1 {
+    text-align: center;
+    color: #f1c40f;
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+    border-bottom: 2px solid #444;
+    padding-bottom: 10px;
+  }
+  
+  .favorite-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .favorite-item.card {
+    background-color: #444;
+    border: 2px solid #555;
+    border-radius: 10px;
+    width: 200px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+  }
+  
+  .favorite-item.card:hover {
+    transform: scale(1.05);
+  }
+  
+  .favorite-link {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .favorite-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-bottom: 2px solid #555;
+  }
+  
+  .favorite-item h3 {
+    text-align: center;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background for better readability */
+    color: #f1c40f; /* Bright text color for better contrast */
+    margin: 0;
+    font-size: 1.2rem; /* Slightly increase font size */
+  }
+  

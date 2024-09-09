@@ -1,0 +1,89 @@
+.bookmarks-page {
+  padding: 20px;
+  background-color: #333;
+  color: #fff;
+  max-width: 1200px;
+  margin: 30px auto;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.bookmarks-page h1 {
+  text-align: center;
+  color: #f1c40f;
+  margin-bottom: 20px;
+  font-size: 2.5rem;
+  border-bottom: 2px solid #444;
+  padding-bottom: 10px;
+}
+
+.bookmarks-page p {
+  text-align: center;
+}
+
+.bookmark-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.bookmark-item.card {
+  background-color: #2d3b44;
+  border: 2px solid #555;
+  border-radius: 12px;
+  width: 220px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+}
+
+.bookmark-item.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.bookmark-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.bookmark-image {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.bookmark-item.card:hover .bookmark-image {
+  transform: scale(1.05);
+}
+
+.card-body {
+  padding: 15px 10px;
+}
+
+.card-title {
+  font-size: 16px;
+  margin: 0;
+  color: #ecf0f1;
+  font-family: 'Montserrat', sans-serif;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.remove-bookmark-button {
+  width: 100%;
+  padding: 10px;
+  border-radius: 0 0 10px 10px;
+  border: none;
+  background-color: #e74c3c;
+  color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+.remove-bookmark-button:hover {
+  background-color: #c0392b;
+}

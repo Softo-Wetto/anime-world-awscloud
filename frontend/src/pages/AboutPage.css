@@ -1,0 +1,126 @@
+/* About Page Styles */
+.about-page {
+  padding: 20px;
+  background-color: #333; /* Dark background for consistency */
+  color: #fff;
+  max-width: 1200px;
+  margin: 30px auto; /* Space between header and footer */
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.about-page h1 {
+  text-align: center;
+  color: #f1c40f; /* Highlight color */
+  margin-bottom: 20px;
+  font-size: 2.5rem;
+  animation: fadeIn 1s ease-in-out; /* Fade-in effect */
+}
+
+.about-content {
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #444; /* Slightly lighter background */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* Accordion Styles */
+.accordion-button {
+  background-color: #f1c40f; /* Highlight color */
+  color: #333; /* Dark text for contrast */
+}
+
+.accordion-button:not(.collapsed) {
+  color: #fff;
+  background-color: #e2b607; /* Darker highlight when active */
+}
+
+.accordion-body {
+  background-color: #555; /* Dark background for the body */
+  color: #ddd; /* Light text color */
+}
+
+/* Form Styles */
+.form-control {
+  background-color: #333;
+  color: #fff;
+  border: 2px solid #444;
+  border-radius: 5px;
+}
+
+.form-control:focus {
+  border-color: #f1c40f;
+  box-shadow: 0 0 10px rgba(241, 196, 15, 0.7);
+  outline: none;
+}
+
+.btn-warning {
+  background-color: #f1c40f;
+  border: none;
+  color: #333;
+  transition: background-color 0.3s ease;
+}
+
+.btn-warning:hover {
+  background-color: #e2b607;
+  color: #fff;
+}
+
+/* Welcome Banner*/
+
+.welcome-banner.about-banner {
+  background-image: url('https://staticg.sportskeeda.com/editor/2023/03/b7dd5-16796463554650-1920.jpg'); /* Replace with a relevant anime background image */
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  padding: 60px 20px;
+  text-align: center;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  position: relative;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.welcome-banner.about-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Overlay to make text stand out */
+  border-radius: 10px;
+}
+
+.welcome-content {
+  position: relative;
+  z-index: 1;
+}
+
+.welcome-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: #f1c40f;
+}
+
+.welcome-content p {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}

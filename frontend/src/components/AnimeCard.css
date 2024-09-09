@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@400;600&display=swap');
+
+.anime-card {
+  width: 220px;
+  height: 380px;
+  border-radius: 12px;
+  background-color: #3c3b4c; /* Unified background color */
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+  margin: 0 auto;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+  font-family: 'Roboto', sans-serif; /* Modern font */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.anime-card:hover {
+  transform: translateY(-5px); /* Lift card slightly on hover */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+}
+
+.anime-card-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.anime-card-image {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  transition: transform 0.3s ease; /* Add slight zoom effect on hover */
+}
+
+.anime-card:hover .anime-card-image {
+  transform: scale(1.05); /* Slight zoom effect */
+}
+
+.anime-card-content {
+  padding: 15px 10px;
+  background-color: transparent; /* No separate background, unified look */
+}
+
+.anime-card-title {
+  font-size: 16px;
+  margin: 0;
+  color: #ecf0f1; /* Softer text color for readability */
+  font-family: 'Montserrat', sans-serif; /* Consistent with header and footer */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.anime-card-score {
+  font-size: 14px;
+  color: #bdc3c7; /* Lighter text color for contrast */
+  margin-top: 8px;
+}

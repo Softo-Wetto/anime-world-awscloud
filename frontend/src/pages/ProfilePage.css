@@ -1,0 +1,76 @@
+/* Profile Page Styles */
+.profile-page {
+  padding: 20px;
+  background-color: #333;
+  color: #fff;
+  max-width: 600px;
+  margin: 30px auto;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.profile-page h1 {
+  text-align: center;
+  color: #f1c40f;
+  margin-bottom: 20px;
+  font-size: 2.5rem;
+  border-bottom: 2px solid #444;
+  padding-bottom: 10px;
+}
+
+/* Profile Card Styles */
+.profile-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #444;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  margin-bottom: 20px;
+}
+
+.avatar-container {
+  margin-bottom: 20px;
+}
+
+.avatar {
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
+  border: 3px solid #f1c40f;
+}
+
+.profile-info p {
+  font-size: 1.1rem;
+  color: #ddd;
+  margin-bottom: 10px;
+}
+
+.profile-info strong {
+  color: #f1c40f;
+}
+
+.bookmark-link.btn, .favorites-link.btn {
+  background-color: #f39c12;
+  color: #2c3e50;
+  padding: 10px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: 'Roboto', sans-serif; /* Consistent font */
+  font-weight: 600;
+  margin: 0 10px; /* Add horizontal margin for spacing */
+}
+
+.bookmark-link.btn:hover, .favorites-link.btn:hover {
+  background-color: #e67e22; /* Slightly darker on hover */
+  color: #fff;
+}
+
+.profile-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px; /* Space between buttons */
+}

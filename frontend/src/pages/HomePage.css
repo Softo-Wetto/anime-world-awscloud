@@ -1,0 +1,135 @@
+body {
+  background-color: #f8f9fa; /* Light gray background */
+  color: #333; /* Main theme color */
+  font-family: 'Roboto', sans-serif; /* Clean, modern font */
+}
+
+.container {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #f1c40f;
+  padding-bottom: 10px;
+}
+
+.section-header h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #f1c40f;
+}
+
+.view-all-button {
+  background-color: #333;
+  color: #fff;
+  padding: 8px 15px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.view-all-button:hover {
+  background-color: #555;
+}
+
+.row {
+  margin: 0 -15px; /* Adjust row spacing */
+}
+
+.col-lg-2, .col-md-4, .col-sm-6 {
+  padding: 15px; /* Adjust column spacing */
+}
+
+.anime-list-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.status-message {
+  text-align: center;
+  padding: 50px 0;
+  font-size: 1.5rem;
+  color: #f1c40f;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.status-message p {
+  margin: 0;
+  color: #f1c40f;
+}
+
+@media (max-width: 768px) {
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .view-all-button {
+    margin-top: 10px;
+  }
+}
+
+/* Welcome Banner*/
+
+.welcome-banner {
+  background-image: url('https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=1200,height=675/catalog/crunchyroll/5d1c34b8f9491d82bf62391f7ac4e4a3.jpg'); /* Replace with a relevant anime background image */
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  padding: 100px 20px;
+  text-align: center;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  position: relative;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.welcome-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Overlay to make text stand out */
+  border-radius: 10px;
+}
+
+.welcome-content {
+  position: relative;
+  z-index: 1;
+}
+
+.welcome-content h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: #f1c40f;
+}
+
+.welcome-content p {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+}
+
+.explore-button {
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  background-color: #3498db;
+  border: none;
+  color: #fff;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.explore-button:hover {
+  background-color: #2980b9;
+}
