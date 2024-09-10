@@ -1,4 +1,3 @@
-// backend/controllers/bookmarkController.js
 const Bookmark = require('../models/Bookmark');
 
 // @desc Add an anime to bookmarks
@@ -6,13 +5,12 @@ const Bookmark = require('../models/Bookmark');
 const addBookmark = async (req, res) => {
     try {
         const { animeId, title, imageUrl } = req.body;
-        const userId = req.user.id;  // Ensure req.user is being used correctly
+        const userId = req.user.sub;  // Use Cognito sub as userId
 
         if (!userId) {
             return res.status(400).json({ message: 'User not authenticated' });
         }
 
-        // Check if the bookmark already exists
         const existingBookmark = await Bookmark.findOne({
             where: { userId, animeId },
         });
@@ -39,7 +37,7 @@ const addBookmark = async (req, res) => {
 // @route GET /api/bookmarks
 const getBookmarks = async (req, res) => {
     try {
-        const userId = req.user.id;
+        const userId = req.user.sub;  // Use Cognito's `sub`
 
         if (!userId) {
             return res.status(400).json({ message: 'User not authenticated' });
@@ -57,7 +55,7 @@ const getBookmarks = async (req, res) => {
 // @route DELETE /api/bookmarks/remove/:animeId
 const removeBookmark = async (req, res) => {
     try {
-        const userId = req.user.id;
+        const userId = req.user.sub;  // Use Cognito's `sub`
         const { animeId } = req.params;
 
         if (!userId) {

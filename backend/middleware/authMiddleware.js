@@ -1,33 +1,27 @@
 const jwt = require('jsonwebtoken');
-const asyncHandler = require('express-async-handler');
-const User = require('../models/User');
+const jwksClient = require('jwks-rsa');
 
-const protect = asyncHandler(async (req, res, next) => {
-  let token;
-
-  if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
-    try {
-      token = req.headers.authorization.split(' ')[1];
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-      // Find the user by decoded ID
-      req.user = await User.findByPk(decoded.id, {
-        attributes: ['id', 'username', 'email'], // only fetching essential fields
-      });
-
-      if (!req.user) {
-        res.status(401).json({ message: 'Not authorized, user not found' });
-        return;
-      }
-
-      next();
-    } catch (error) {
-      console.error('Not authorized, token failed');
-      res.status(401).json({ message: 'Not authorized, token failed' });
-    }
-  } else {
-    res.status(401).json({ message: 'Not authorized, no token' });
-  }
+const client = jwksClient({
+  jwksUri: `https://cognito-idp.ap-southeast-2.amazonaws.com/${process.env.COGNITO_USER_POOL_ID}/.well-known/jwks.json`
 });
+
+function getKey(header, callback) {
+  client.getSigningKey(header.kid, (err, key) => {
+    const signingKey = key.getPublicKey();
+    callback(null, signingKey);
+  });
+}
+
+const protect = (req, res, next) => {
+  const token = req.headers.authorization.split(' ')[1];
+
+  jwt.verify(token, getKey, { algorithms: ['RS256'] }, (err, decoded) => {
+    if (err) {
+      return res.status(401).json({ message: 'Unauthorized' });
+    }
+    req.user = decoded;  // Attach decoded token, including `sub`
+    next();
+  });
+};
 
 module.exports = { protect };

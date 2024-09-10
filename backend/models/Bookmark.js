@@ -1,15 +1,10 @@
-// backend/models/Bookmark.js
 const { DataTypes } = require('sequelize');
 const { sequelize } = require('../config/db');
 
 const Bookmark = sequelize.define('Bookmark', {
   userId: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,  // Cognito user ID (sub) is a string, not an integer
     allowNull: false,
-    references: {
-      model: 'Users', // Name of the Users table
-      key: 'id',
-    },
   },
   animeId: {
     type: DataTypes.STRING,

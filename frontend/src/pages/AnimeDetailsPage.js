@@ -81,7 +81,7 @@ const AnimeDetailsPage = () => {
       setBookmarkMessage('Please log in to bookmark an anime.');
       return;
     }
-
+  
     if (!anime) {
       setBookmarkMessage('Anime data is not available.');
       return;
@@ -97,11 +97,10 @@ const AnimeDetailsPage = () => {
         },
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${token}`,  // Pass the Cognito token in headers
           },
         }
       );
-  
       setBookmarkMessage('Anime bookmarked!');
     } catch (err) {
       if (err.response && err.response.status === 400) {
@@ -261,99 +260,99 @@ const AnimeDetailsPage = () => {
   };
 
     return (
-<Container className="anime-details">
-  <h1>{anime.title} ({anime.title_japanese})</h1>
-  <Row>
-    <Col md={4} className="image-section">
-      <Card>
-        <Card.Img src={anime.images.jpg.large_image_url} alt={anime.title} />
-        <Card.Body>
-          <Button onClick={handleBookmark} variant="primary">
-            Bookmark
-          </Button>
-          {bookmarkMessage && <p className="bookmark-message mt-2">{bookmarkMessage}</p>}
-        </Card.Body>
-      </Card>
-    </Col>
-    <Col md={8}>
-      <Tabs>
-        <TabList>
-          <Tab>Details</Tab>
-          <Tab>Characters</Tab>
-          <Tab>Staff</Tab>
-          <Tab>Episodes</Tab>
-          <Tab>Forum</Tab>
-          <Tab>Reviews</Tab>
-          <Tab>Statistics</Tab>
-        </TabList>
+      <Container className="anime-details">
+        <h1>{anime.title} ({anime.title_japanese})</h1>
+        <Row>
+          <Col md={4} className="image-section">
+            <Card>
+              <Card.Img src={anime.images.jpg.large_image_url} alt={anime.title} />
+              <Card.Body>
+                <Button onClick={handleBookmark} variant="primary">
+                  Bookmark
+                </Button>
+                {bookmarkMessage && <p className="bookmark-message mt-2">{bookmarkMessage}</p>}
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col md={8}>
+            <Tabs>
+              <TabList>
+                <Tab>Details</Tab>
+                <Tab>Characters</Tab>
+                <Tab>Staff</Tab>
+                <Tab>Episodes</Tab>
+                <Tab>Forum</Tab>
+                <Tab>Reviews</Tab>
+                <Tab>Statistics</Tab>
+              </TabList>
 
-        <TabPanel>
-          <div className="info-section">
-            <h3>Overview</h3>
-            <p><strong>English Title:</strong> {anime.title_english}</p>
-            <p><strong>Type:</strong> {anime.type}</p>
-            <p><strong>Episodes:</strong> {anime.episodes}</p>
-            <p><strong>Status:</strong> {anime.status}</p>
-            <p><strong>Aired:</strong> {anime.aired?.string}</p>
-            <p><strong>Duration:</strong> {anime.duration}</p>
-            <p><strong>Rating:</strong> {anime.rating}</p>
-            <p><strong>Score:</strong> {anime.score}</p>
-            <p><strong>Rank:</strong> {anime.rank}</p>
-            <p><strong>Popularity:</strong> {anime.popularity}</p>
-            <p><strong>Members:</strong> {anime.members}</p>
-            <p><strong>Favorites:</strong> {anime.favorites}</p>
-            <p><strong>Synopsis:</strong> <DetailsWithReadMore text={anime.synopsis} /></p>
-            <p><strong>Background:</strong> <DetailsWithReadMore text={anime.background} /></p>
-            <p><strong>Season:</strong> {anime.season} {anime.year}</p>
-            <p><strong>Broadcast:</strong> {anime.broadcast?.string}</p>
-            <p><strong>Source:</strong> {anime.source}</p>
-            <p><strong>Producers:</strong> {anime.producers?.map(producer => producer.name).join(', ')}</p>
-            <p><strong>Licensors:</strong> {anime.licensors?.map(licensor => licensor.name).join(', ')}</p>
-            <p><strong>Studios:</strong> {anime.studios?.map(studio => studio.name).join(', ')}</p>
-            <p><strong>Genres:</strong> {anime.genres?.map(genre => genre.name).join(', ')}</p>
-            <p><strong>Explicit Genres:</strong> {anime.explicit_genres?.map(genre => genre.name).join(', ')}</p>
-            <p><strong>Themes:</strong> {anime.themes?.map(theme => theme.name).join(', ')}</p>
-            <p><strong>Demographics:</strong> {anime.demographics?.map(demo => demo.name).join(', ')}</p>
-            <ThemesWithReadMore label="Opening Themes" themes={anime.theme?.openings} />
-            <ThemesWithReadMore label="Ending Themes" themes={anime.theme?.endings} />
-            <p>
-              <strong>External Links:</strong> 
-              {anime.external?.map((link, index) => (
-                <span key={link.name}>
-                  <a href={link.url} target="_blank" rel="noopener noreferrer">
-                    {link.name}
-                  </a>
-                  {index < anime.external.length - 1 ? ', ' : ''}
-                </span>
-              ))}
-            </p>
+              <TabPanel>
+                <div className="info-section">
+                  <h3>Overview</h3>
+                  <p><strong>English Title:</strong> {anime.title_english}</p>
+                  <p><strong>Type:</strong> {anime.type}</p>
+                  <p><strong>Episodes:</strong> {anime.episodes}</p>
+                  <p><strong>Status:</strong> {anime.status}</p>
+                  <p><strong>Aired:</strong> {anime.aired?.string}</p>
+                  <p><strong>Duration:</strong> {anime.duration}</p>
+                  <p><strong>Rating:</strong> {anime.rating}</p>
+                  <p><strong>Score:</strong> {anime.score}</p>
+                  <p><strong>Rank:</strong> {anime.rank}</p>
+                  <p><strong>Popularity:</strong> {anime.popularity}</p>
+                  <p><strong>Members:</strong> {anime.members}</p>
+                  <p><strong>Favorites:</strong> {anime.favorites}</p>
+                  <p><strong>Synopsis:</strong> <DetailsWithReadMore text={anime.synopsis} /></p>
+                  <p><strong>Background:</strong> <DetailsWithReadMore text={anime.background} /></p>
+                  <p><strong>Season:</strong> {anime.season} {anime.year}</p>
+                  <p><strong>Broadcast:</strong> {anime.broadcast?.string}</p>
+                  <p><strong>Source:</strong> {anime.source}</p>
+                  <p><strong>Producers:</strong> {anime.producers?.map(producer => producer.name).join(', ')}</p>
+                  <p><strong>Licensors:</strong> {anime.licensors?.map(licensor => licensor.name).join(', ')}</p>
+                  <p><strong>Studios:</strong> {anime.studios?.map(studio => studio.name).join(', ')}</p>
+                  <p><strong>Genres:</strong> {anime.genres?.map(genre => genre.name).join(', ')}</p>
+                  <p><strong>Explicit Genres:</strong> {anime.explicit_genres?.map(genre => genre.name).join(', ')}</p>
+                  <p><strong>Themes:</strong> {anime.themes?.map(theme => theme.name).join(', ')}</p>
+                  <p><strong>Demographics:</strong> {anime.demographics?.map(demo => demo.name).join(', ')}</p>
+                  <ThemesWithReadMore label="Opening Themes" themes={anime.theme?.openings} />
+                  <ThemesWithReadMore label="Ending Themes" themes={anime.theme?.endings} />
+                  <p>
+                    <strong>External Links:</strong> 
+                    {anime.external?.map((link, index) => (
+                      <span key={link.name}>
+                        <a href={link.url} target="_blank" rel="noopener noreferrer">
+                          {link.name}
+                        </a>
+                        {index < anime.external.length - 1 ? ', ' : ''}
+                      </span>
+                    ))}
+                  </p>
 
-            <p>
-              <strong>Streaming Links:</strong> 
-              {anime.streaming?.map((stream, index) => (
-                <span key={stream.name}>
-                  <a href={stream.url} target="_blank" rel="noopener noreferrer">
-                    {stream.name}
-                  </a>
-                  {index < anime.streaming.length - 1 ? ', ' : ''}
-                </span>
-              ))}
-            </p>
-          </div>
-          {anime.trailer?.embed_url && (
-            <div className="trailer-section mt-4">
-              <h3>Trailer</h3>
-              <iframe
-                src={`${anime.trailer.embed_url}?autoplay=0`}
-                title={`${anime.title} Trailer`}
-                width="100%"
-                height="450"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            </div>
-          )}
-        </TabPanel>
+                  <p>
+                    <strong>Streaming Links:</strong> 
+                    {anime.streaming?.map((stream, index) => (
+                      <span key={stream.name}>
+                        <a href={stream.url} target="_blank" rel="noopener noreferrer">
+                          {stream.name}
+                        </a>
+                        {index < anime.streaming.length - 1 ? ', ' : ''}
+                      </span>
+                    ))}
+                  </p>
+                </div>
+                {anime.trailer?.embed_url && (
+                  <div className="trailer-section mt-4">
+                    <h3>Trailer</h3>
+                    <iframe
+                      src={`${anime.trailer.embed_url}?autoplay=0`}
+                      title={`${anime.title} Trailer`}
+                      width="100%"
+                      height="450"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    ></iframe>
+                  </div>
+                )}
+              </TabPanel>
 
     
               <TabPanel>

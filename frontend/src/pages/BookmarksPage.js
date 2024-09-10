@@ -10,12 +10,19 @@ const BookmarksPage = () => {
 
   useEffect(() => {
     const fetchBookmarks = async () => {
+      // Retrieve the Cognito token from localStorage or session
       const token = localStorage.getItem('token');
+
+      if (!token) {
+        setError('User is not authenticated. Please log in.');
+        setLoading(false);
+        return;
+      }
 
       try {
         const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/bookmarks`, {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${token}`,  // Pass the Cognito JWT token here
           },
         });
         setBookmarks(response.data);
@@ -32,10 +39,15 @@ const BookmarksPage = () => {
   const removeBookmark = async (animeId) => {
     const token = localStorage.getItem('token');
 
+    if (!token) {
+      setError('User is not authenticated. Please log in.');
+      return;
+    }
+
     try {
       await axios.delete(`${process.env.REACT_APP_API_BASE_URL}/api/bookmarks/remove/${animeId}`, {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,  // Pass the Cognito JWT token here as well
         },
       });
       setBookmarks(bookmarks.filter((bookmark) => bookmark.animeId !== animeId));
@@ -46,7 +58,7 @@ const BookmarksPage = () => {
   };
 
   if (loading) return <div className="status-message"><p>Loading...</p></div>;
-  if (error) return <div className="status-message"><p>Error loading data: {error.message}</p></div>;
+  if (error) return <div className="status-message"><p>{error}</p></div>;
 
   return (
     <div className="bookmarks-page">

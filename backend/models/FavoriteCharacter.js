@@ -1,15 +1,10 @@
 const { DataTypes } = require('sequelize');
 const { sequelize } = require('../config/db');
-const User = require('./User');  // Assuming you have a User model
 
 const FavoriteCharacter = sequelize.define('FavoriteCharacter', {
     userId: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING, 
       allowNull: false,
-      references: {
-        model: User,
-        key: 'id',
-      },
     },
     characterId: {
       type: DataTypes.INTEGER,

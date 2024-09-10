@@ -3,7 +3,6 @@ const path = require('path');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const { connectDB } = require('./config/db');
-const userRoutes = require('./routes/userRoutes');
 const protectedRoutes = require('./routes/protectedRoute');
 const bookmarkRoutes = require('./routes/bookmarkRoutes');
 const imageRoute = require('./routes/imageRoute');
@@ -25,7 +24,6 @@ app.use(cors({
 }));
 
 // API routes
-app.use('/api/users', userRoutes);
 app.use('/api', protectedRoutes);
 app.use('/api/bookmarks', bookmarkRoutes); 
 app.use('/api/image', imageRoute);

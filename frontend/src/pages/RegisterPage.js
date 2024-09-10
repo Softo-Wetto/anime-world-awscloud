@@ -1,5 +1,13 @@
 import React, { useState } from 'react';
 import './RegisterPage.css'; // Import the CSS for styling
+import { CognitoUserPool } from 'amazon-cognito-identity-js';
+
+const poolData = {
+  UserPoolId: process.env.REACT_APP_COGNITO_USER_POOL_ID, // From Cognito user pool
+  ClientId: process.env.REACT_APP_COGNITO_APP_CLIENT_ID,   // From Cognito app client
+};
+
+const userPool = new CognitoUserPool(poolData);
 
 const RegisterPage = () => {
   const [formData, setFormData] = useState({
@@ -8,7 +16,6 @@ const RegisterPage = () => {
     password: '',
     confirmPassword: '',
   });
-
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
 
@@ -19,39 +26,24 @@ const RegisterPage = () => {
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-  
-    // Simple validation
+
     if (formData.password !== formData.confirmPassword) {
       setError('Passwords do not match');
       return;
     }
-  
-    try {
-      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/users/register`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          username: formData.username,
-          email: formData.email,
-          password: formData.password,
-        }),
-      });
-  
-      const data = await response.json();
-  
-      if (response.ok) {
-        setSuccess(true);
-      } else {
-        setError(data.message || 'Something went wrong');
+
+    const { username, email, password } = formData;
+
+    userPool.signUp(username, password, [{ Name: 'email', Value: email }], null, (err, result) => {
+      if (err) {
+        setError(err.message || 'Something went wrong');
+        return;
       }
-    } catch (err) {
-      setError('Error connecting to the server');
-    }
-  };  
+      setSuccess(true);
+    });
+  };
 
   return (
     <div className="register-page">
@@ -59,52 +51,24 @@ const RegisterPage = () => {
         <h2>Register</h2>
         {error && <p className="error-message">{error}</p>}
         {success ? (
-          <p className="success-message">Registration successful! Please log in.</p>
+          <p className="success-message">Registration successful! Check your email for confirmation.</p>
         ) : (
           <form onSubmit={handleSubmit}>
             <div className="form-group">
               <label htmlFor="username">Username</label>
-              <input
-                type="text"
-                name="username"
-                value={formData.username}
-                onChange={handleChange}
-                required
-                placeholder="Enter your username"
-              />
+              <input type="text" name="username" placeholder="Enter your username" value={formData.username} onChange={handleChange} required />
             </div>
             <div className="form-group">
               <label htmlFor="email">Email</label>
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                placeholder="Enter your email"
-              />
+              <input type="email" name="email" placeholder="Enter your email" value={formData.email} onChange={handleChange} required />
             </div>
             <div className="form-group">
               <label htmlFor="password">Password</label>
-              <input
-                type="password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-                required
-                placeholder="Enter your password"
-              />
+              <input type="password" name="password" placeholder="Enter your password" value={formData.password} onChange={handleChange} required />
             </div>
             <div className="form-group">
               <label htmlFor="confirmPassword">Confirm Password</label>
-              <input
-                type="password"
-                name="confirmPassword"
-                value={formData.confirmPassword}
-                onChange={handleChange}
-                required
-                placeholder="Confirm your password"
-              />
+              <input type="password" name="confirmPassword" placeholder="Confirm your password" value={formData.confirmPassword} onChange={handleChange} required />
             </div>
             <button type="submit" className="register-button">Register</button>
           </form>
