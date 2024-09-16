@@ -14,6 +14,7 @@ import ProfilePage from './pages/ProfilePage';
 import BookmarksPage from './pages/BookmarksPage';
 import FavoriteCharactersPage from './pages/FavoriteCharactersPage';
 import CharacterDetailsPage from './pages/CharacterDetailsPage';
+import UploadImagePage from './pages/UploadImagePage';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -40,6 +41,7 @@ function App() {
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/bookmarks" element={<BookmarksPage />} />
+            <Route path="/upload-image" element={<UploadImagePage />} />
           </Routes>
         </main>
         <Footer />

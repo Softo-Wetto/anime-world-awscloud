@@ -50,6 +50,7 @@ const Header = () => {
                 <NavDropdown.Item as={Link} to="/profile">My Profile</NavDropdown.Item>
                 <NavDropdown.Item as={Link} to="/bookmarks">Bookmarks</NavDropdown.Item>
                 <NavDropdown.Item as={Link} to="/favorites">Favorite Characters</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/upload-image">Upload Images</NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item as={Button} onClick={handleLogout}>Logout</NavDropdown.Item>
               </NavDropdown>
