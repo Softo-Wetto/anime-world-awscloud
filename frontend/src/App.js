@@ -15,6 +15,7 @@ import BookmarksPage from './pages/BookmarksPage';
 import FavoriteCharactersPage from './pages/FavoriteCharactersPage';
 import CharacterDetailsPage from './pages/CharacterDetailsPage';
 import UploadImagePage from './pages/UploadImagePage';
+import VerificationPage from './pages/VerificationPage'; // Import the new VerificationPage
 
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -39,6 +40,7 @@ function App() {
             <Route path="/search" element={<SearchPage />} /> 
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
+            <Route path="/verify" element={<VerificationPage />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/bookmarks" element={<BookmarksPage />} />
             <Route path="/upload-image" element={<UploadImagePage />} />

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './RegisterPage.css'; // Import the CSS for styling
 import { CognitoUserPool } from 'amazon-cognito-identity-js';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for redirection
 
 const poolData = {
   UserPoolId: process.env.REACT_APP_COGNITO_USER_POOL_ID, // From Cognito user pool
@@ -10,6 +11,7 @@ const poolData = {
 const userPool = new CognitoUserPool(poolData);
 
 const RegisterPage = () => {
+  const navigate = useNavigate(); // Set up navigation
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -42,8 +44,10 @@ const RegisterPage = () => {
         return;
       }
       setSuccess(true);
+      // Pass username to the verification page via useNavigate
+      navigate('/verify', { state: { username: username } });
     });
-  };
+    
 
   return (
     <div className="register-page">
@@ -51,7 +55,7 @@ const RegisterPage = () => {
         <h2>Register</h2>
         {error && <p className="error-message">{error}</p>}
         {success ? (
-          <p className="success-message">Registration successful! Check your email for confirmation.</p>
+          <p className="success-message">Registration successful! Redirecting to verification page...</p>
         ) : (
           <form onSubmit={handleSubmit}>
             <div className="form-group">
