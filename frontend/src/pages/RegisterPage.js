@@ -47,6 +47,7 @@ const RegisterPage = () => {
       // Pass username to the verification page via useNavigate
       navigate('/verify', { state: { username: username } });
     });
+  };
     
 
   return (
