@@ -32,6 +32,11 @@ app.use('/api/upload', uploadRoutes);
 app.use(notFound);
 app.use(errorHandler);
 
+// Health check
+app.get('/', (req, res) => {
+  res.status(200).send('Health check passed');
+});
+
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
