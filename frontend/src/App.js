@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+// App.js
+import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import AnimeDetailsPage from './pages/AnimeDetailsPage';
@@ -16,20 +17,12 @@ import FavoriteCharactersPage from './pages/FavoriteCharactersPage';
 import CharacterDetailsPage from './pages/CharacterDetailsPage';
 import UploadImagePage from './pages/UploadImagePage';
 import VerificationPage from './pages/VerificationPage';
-import ContactPage from './pages/ContactPage';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import { sendMessage } from './components/chatbot_interaction_handler';
+import Chatbot from './components/Chatbot'; // Import the Chatbot component
 import './App.css';
 
 function App() {
-    const [showChatbot, setShowChatbot] = useState(false);
-
-    // Toggle chatbot display using the state
-    const handleToggleChatbot = () => {
-        setShowChatbot(!showChatbot);
-    };
-
     return (
         <div className="App">
             <Router>
@@ -52,31 +45,12 @@ function App() {
                         <Route path="/profile" element={<ProfilePage />} />
                         <Route path="/bookmarks" element={<BookmarksPage />} />
                         <Route path="/upload-image" element={<UploadImagePage />} />
-                        <Route path="/contact" element={<ContactPage />} />
                     </Routes>
                 </main>
                 <Footer />
             </Router>
-
-            {/* Chatbot Icon */}
-            <div id="chatbot-icon" onClick={handleToggleChatbot}>
-                💬
-            </div>
-
-            {/* Chatbot Container */}
-            {showChatbot && (
-                <div id="chatbot-container" style={{ display: 'block' }}>
-                    <div id="chatbot-header">
-                        <span>Anime Chatbot</span>
-                        <button onClick={handleToggleChatbot}>X</button>
-                    </div>
-                    <div id="chatbot-body">
-                        <div id="chatbot-messages"></div>
-                        <input type="text" id="user-input" placeholder="Ask me anything..." />
-                        <button onClick={sendMessage}>Send</button>
-                    </div>
-                </div>
-            )}
+            {/* Include the Chatbot component */}
+            <Chatbot />
         </div>
     );
 }

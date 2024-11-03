@@ -9,7 +9,6 @@ const imageRoute = require('./routes/imageRoute');
 const favoriteCharacterRoutes = require('./routes/favoriteCharacterRoutes');
 const uploadRoutes = require('./routes/uploadRoutes');
 const { notFound, errorHandler } = require('./middleware/errorMiddleware');
-const contactRoutes = require('./routes/contactRoutes'); 
 
 dotenv.config();
 
@@ -21,7 +20,7 @@ app.use(express.json());
 
 // CORS Middleware with specific origin
 app.use(cors({
-  origin: 'http://ec2-54-206-189-41.ap-southeast-2.compute.amazonaws.com',
+  origin: '*',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
@@ -35,15 +34,14 @@ app.use('/api/bookmarks', bookmarkRoutes);
 app.use('/api/image', imageRoute);
 app.use('/api/favorites', favoriteCharacterRoutes);
 app.use('/api/upload', uploadRoutes);
-app.use('/api/contact', contactRoutes); // Register contact route
 
 // Error handling middleware - move to end to catch any errors
 app.use(notFound);
 app.use(errorHandler);
 
 // Health check
-app.get('/', (req, res) => {
-  res.status(200).send('Health check passed');
+app.get('/health', (req, res) => {
+  res.status(200).json({ message: 'Healthy' });
 });
 
 // Debug log for successful server listening
