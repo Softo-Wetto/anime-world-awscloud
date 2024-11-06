@@ -19,7 +19,11 @@ const FavoriteCharactersPage = () => {
                 });
                 setFavorites(response.data);
             } catch (err) {
-                setError('Failed to load favorite characters');
+                if (err.response && err.response.status === 401) {
+                    setError('Please log in again.');
+                } else {
+                    setError('Failed to load favorite characters');
+                }
             } finally {
                 setLoading(false);
             }
@@ -29,7 +33,7 @@ const FavoriteCharactersPage = () => {
     }, []);
 
     if (loading) return <div className="status-message"><p>Loading...</p></div>;
-    if (error) return <div className="status-message"><p>Error loading data: {error.message}</p></div>;
+    if (error) return <div className="status-message"><p>{error}</p></div>;
 
     return (
         <div className="favorite-characters-page">

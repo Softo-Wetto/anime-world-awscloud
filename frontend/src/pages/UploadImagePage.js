@@ -8,25 +8,27 @@ const UploadImagePage = () => {
   const [message, setMessage] = useState('');
   const [uploadedFileUrl, setUploadedFileUrl] = useState('');
   const [downloadUrl, setDownloadUrl] = useState('');
-  const [uploadedFiles, setUploadedFiles] = useState([]);  // To store all uploaded files
+  const [uploadedFiles, setUploadedFiles] = useState([]);
+
+  // Fetch and display all uploaded files
+  const fetchUploadedFiles = async () => {
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/upload/list-objects`);
+      setUploadedFiles(response.data);
+    } catch (err) {
+      console.error('Error fetching uploaded files:', err);
+    }
+  };
 
   useEffect(() => {
-    // Fetch and display all uploaded files when the page loads
-    const fetchUploadedFiles = async () => {
-      try {
-        const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/upload/list-objects`);
-        setUploadedFiles(response.data);
-      } catch (err) {
-        console.error('Error fetching uploaded files:', err);
-      }
-    };
-
     fetchUploadedFiles();
   }, []);
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
     setUploadedFileUrl('');
+    setDownloadUrl('');
+    setMessage('');
   };
 
   const handleUpload = async () => {
@@ -51,7 +53,7 @@ const UploadImagePage = () => {
 
       const { presignedUrl, publicUrl } = response.data;
 
-      // Upload the file to S3 using the presigned URL
+      // Upload the file to S3 using the pre-signed URL
       await axios.put(presignedUrl, selectedFile, {
         headers: {
           'Content-Type': selectedFile.type,
@@ -63,15 +65,14 @@ const UploadImagePage = () => {
       });
 
       setUploadedFileUrl(publicUrl);
-      setMessage('File uploaded successfully!');
-      
-      // Fetch the presigned download URL
+      setMessage('File uploaded successfully! Additional processing may take a few moments.');
+
+      // Fetch the presigned download URL (optional if SQS processing occurs later)
       const downloadResponse = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/upload/download-url/${selectedFile.name}`);
       setDownloadUrl(downloadResponse.data.presignedUrl);
 
       // Re-fetch all uploaded files after a new upload
-      const updatedFiles = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/upload/list-objects`);
-      setUploadedFiles(updatedFiles.data);
+      fetchUploadedFiles();
 
     } catch (err) {
       console.error('Error uploading file:', err);
@@ -84,7 +85,7 @@ const UploadImagePage = () => {
       <h1>Upload an Image or Video</h1>
       <input 
         type="file" 
-        accept="image/jpeg,image/png,image/webp,video/mp4" // Allow images and videos
+        accept="image/jpeg,image/png,image/webp,video/mp4" 
         onChange={handleFileChange} 
       />
       <button onClick={handleUpload} className="upload-button">Upload</button>
@@ -112,7 +113,6 @@ const UploadImagePage = () => {
         </div>
       )}
 
-      {/* Display all uploaded files */}
       <div className="uploaded-files-gallery">
         <h2>All Uploaded Files</h2>
         <div className="files-list">

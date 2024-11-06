@@ -27,7 +27,11 @@ const BookmarksPage = () => {
         });
         setBookmarks(response.data);
       } catch (err) {
-        setError('Failed to fetch bookmarks. Please try again later.');
+        if (err.response && err.response.status === 401) {
+          setError('Please log in again.');
+        } else {
+          setError('Failed to fetch bookmarks. Please try again later.');
+        }
       } finally {
         setLoading(false);
       }
@@ -52,8 +56,12 @@ const BookmarksPage = () => {
       });
       setBookmarks(bookmarks.filter((bookmark) => bookmark.animeId !== animeId));
     } catch (err) {
-      console.error('Failed to remove bookmark:', err);
-      setError('Failed to remove bookmark. Please try again later.');
+      if (err.response && err.response.status === 401) {
+        setError('Please log in again.');
+      } else {
+        console.error('Failed to remove bookmark:', err);
+        setError('Failed to remove bookmark. Please try again later.');
+      }
     }
   };
 
